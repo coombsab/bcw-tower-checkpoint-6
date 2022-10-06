@@ -7,7 +7,7 @@
         <span>{{towerEvent.location}}</span>
         <span>{{new Date(towerEvent.startDate).toDateString() + " @ " + new Date(towerEvent.startDate).toLocaleTimeString()}}</span>
       </div>
-      <button class="btn btn-danger px-5">not going</button>
+      <button class="btn btn-danger px-5" @click="unattend()">not going</button>
     </div>
   </div>
   <div v-else>
@@ -16,18 +16,28 @@
 </template>
 
 <script>
+import { computed } from "@vue/reactivity";
+import { AppState } from "../AppState";
 import { Ticket } from "../models/Ticket.js";
 import { TowerEvent } from "../models/TowerEvent.js";
+import { ticketsService } from "../services/TicketsService";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
 
   export default {
     props: {
       towerEvent: { type: [TowerEvent, Object] }
     },
-    setup() {
+    setup(props) {
       return {
+        account: computed(() => AppState.account),
         async unattend() {
           try {
-          
+            const ticket = AppState.tickets.find(t => t.eventId === props.towerEvent.id && t.accountId === this.account.id)
+            if (!ticket) {
+              throw new Error("You cannot unattend an event you do not have a ticket for.")
+            }
+            await ticketsService.unattendByTicketId(ticket.id)
           }
           catch(error) {
             logger.log('[unattend]', error)
