@@ -37,6 +37,6 @@ export default {
 @import "./assets/scss/main.scss";
 .login-bar {
   background: linear-gradient(180deg, #474C61 0%, rgba(71, 76, 97, 0) 100%);
-  height: 100vh;
+  min-height: 100vh;
 }
 </style>

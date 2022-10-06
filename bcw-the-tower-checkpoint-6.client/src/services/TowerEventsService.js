@@ -43,6 +43,11 @@ class TowerEventsService {
     const res = await api.get(`api/events/${eventId}/tickets`)
     AppState.tickets = res.data.map(data => new Ticket(data))
   }
+
+  async addEvent(eventData) {
+    const res = await api.post("api/events", eventData)
+    AppState.events.push(new TowerEvent(res.data))
+  }
 }
 
 export const towerEventsService = new TowerEventsService()

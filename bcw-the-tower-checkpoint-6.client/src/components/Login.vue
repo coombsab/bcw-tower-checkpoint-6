@@ -21,7 +21,7 @@
       </li>
     </ul>
 
-    <button class="btn text-light mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">New Event</button>
+    <button class="btn text-light mb-3" data-bs-toggle="modal" data-bs-target="#addEventModal">New Event</button>
 
     <div class="text-danger logout" @click="logout" v-if="user.isAuthenticated">
       <i class="mdi mdi-logout"></i>
@@ -30,11 +30,11 @@
   </span>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5 text-dark" id="exampleModalLabel">Add New Event</h1>
+          <h1 class="modal-title fs-5 text-dark" id="addEventModalLabel">Add New Event</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-dark">

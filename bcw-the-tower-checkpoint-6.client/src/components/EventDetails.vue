@@ -4,13 +4,13 @@
       <div class="controls bg-dark-lighten w-100 d-flex align-items-center justify-content-end pe-4">
         <i class="mdi mdi-delete controls selectable mt-2"></i>
       </div>
-      <div class="event-details-card-body d-flex justify-content-between align-items-center text-dark bg-dark-lighten px-4 pb-4 gap-3">
+      <div class="event-details-card-body d-flex align-items-center text-dark bg-dark-lighten px-4 pb-4 gap-3">
         <!-- TODO Figure out how to open a window to the background image -->
         <!-- <div class="window">
           
         </div> -->
         <img :src="towerEvent.coverImg" alt="name" height="200">
-        <div class="event-details-content text-light">
+        <div class="event-details-content text-light w-100">
           <div class="d-flex justify-content-between my-4">
             <div class="d-flex flex-column">
               <span>{{towerEvent.name}}</span>

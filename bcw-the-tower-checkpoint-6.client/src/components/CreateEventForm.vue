@@ -10,7 +10,7 @@
     </div>
     <div class="d-flex justify-content-between">
       <input type="datetime-local" :min="todayFormatted" v-model="editable.startDate" required>
-      <select name="type" id="type">
+      <select name="type" id="type" v-model="editable.type">
         <option value="concert">Concert</option>
         <option value="convention">Convention</option>
         <option value="sport">Sport</option>
@@ -25,8 +25,10 @@
 
 <script>
 import { computed } from "@vue/reactivity";
+import { Modal } from "bootstrap";
 import { ref } from "vue";
 import { AppState } from "../AppState";
+import { towerEventsService } from "../services/TowerEventsService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 
@@ -44,19 +46,15 @@ export default {
         if (dd < 10) {
           dd = '0' + dd
         }
-
         if (mm < 10) {
           mm = '0' + mm
         }
-
         if (hh < 10) {
           hh = '0' + hh
         }
-
         if (m < 10) {
           m = '0' + m
         }
-
         let todayFormatted = yyyy + '-' + mm + '-' + dd + 'T' + hh + ':' + m
         editable.startDate = todayFormatted
         AppState.todayFormatted = todayFormatted
@@ -67,7 +65,8 @@ export default {
       todayFormatted: computed(() => AppState.todayFormatted),
       async handleSubmit() {
         try {
-          logger.log("editable", editable.value)
+          await towerEventsService.addEvent(editable.value)
+          Modal.getOrCreateInstance(document.getElementById('addEventModal')).hide()
         }
         catch(error) {
           logger.log('[handleSubmit]', error)
