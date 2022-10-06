@@ -30,6 +30,7 @@ import { useRoute } from "vue-router";
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
 import AttendeeCard from "../components/AttendeeCard.vue";
+import { ticketsService } from "../services/TicketsService";
 export default {
     setup() {
       const route = useRoute()
@@ -53,7 +54,6 @@ export default {
           Pop.error(error.message)
         }
       }
-
       onMounted(() => {
         getEventById()
         getCommentsByEventId()
@@ -96,6 +96,6 @@ export default {
   }
 
   .comments-container {
-    min-height: 13.8vh;
+    min-height: 40.1vh;
   }
 </style>

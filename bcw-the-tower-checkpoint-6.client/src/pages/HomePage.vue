@@ -88,7 +88,7 @@ export default {
 
 // TODO maybe a more efficient (and dynamic) way to take up the remaining screen height?
 .scrollable {
-  height: 53.3vh;
+  height: 62.9vh;
   overflow-y: auto;
 }
 </style>

@@ -27,6 +27,7 @@
 import { computed } from "@vue/reactivity";
 import { Modal } from "bootstrap";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { AppState } from "../AppState";
 import { towerEventsService } from "../services/TowerEventsService";
 import { logger } from "../utils/Logger";
@@ -34,6 +35,7 @@ import Pop from "../utils/Pop";
 
 export default {
   setup() {
+    const router = useRouter()
     const editable = ref({})
     function getTodayInLocal() {
         const today = new Date()
@@ -62,11 +64,13 @@ export default {
       getTodayInLocal()
     return {
       editable,
+      router,
       todayFormatted: computed(() => AppState.todayFormatted),
       async handleSubmit() {
         try {
-          await towerEventsService.addEvent(editable.value)
+          const towerEvent = await towerEventsService.addEvent(editable.value)
           Modal.getOrCreateInstance(document.getElementById('addEventModal')).hide()
+          router.push({ name: "EventDetails", params: { eventId: towerEvent.id }})
         }
         catch(error) {
           logger.log('[handleSubmit]', error)

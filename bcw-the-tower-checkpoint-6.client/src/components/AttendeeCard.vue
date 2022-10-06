@@ -1,6 +1,9 @@
 <template>
   <div class="attendee-card d-flex flex-wrap gap-2 p-2 bg-dark-lighten rounded" v-if="tickets">
     <img v-for="t in tickets" :src="t.profile?.picture" :alt="t.profile?.name" :title="t.profile?.name">
+    <!-- <div v-if="tickets.length === 0" class="text-visible">
+      <p>Currently no one is attending this event.</p>
+    </div> -->
   </div>
   <div v-else>
     Loading...
@@ -39,6 +42,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .attendee-card {
+    min-height: 2.8125rem;
+  }
   .attendee-card>img {
     height: 2.8125rem;
     width: 2.8125rem;

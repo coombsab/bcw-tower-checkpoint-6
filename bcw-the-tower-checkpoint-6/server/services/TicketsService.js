@@ -34,12 +34,12 @@ class TicketsService {
 
     // TODO Change comment isAttending to true here, then to false when deleting a ticket... probably need to iterate over all comments on a ticket
     // const comments = await commentsService.getCommentsByIds(ticket.accountId, ticket.eventId)
+    // REVIEW How to use bulk save instead of waiting for each iteration
+    // comments.forEach( c => c.isAttending = true)
     // await comments.forEach(c => {
     //   c.isAttending = true
     //   c.save()
     // })
-    // REVIEW How to use bulk save instead of waiting for each iteration
-    // comments.forEach( c => c.isAttending = true)
     // await dbContext.Comments.bulkSave(comments)
 
     return ticket

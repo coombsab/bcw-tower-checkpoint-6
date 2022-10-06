@@ -13,5 +13,9 @@ export const AppState = reactive({
   comments: [],
   /** @type {import('./models/Ticket.js').Ticket[]} */
   tickets: [],
-  todayFormatted: null
+  /** @type Date */
+  todayFormatted: null,
+  isAttending: null,
+  /** @type {import('./models/Ticket.js').Ticket} */
+  myTicketForCurrentEvent: null
 })
