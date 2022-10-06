@@ -17,6 +17,7 @@
         <button @click="getEventsByType('convention')" class="btn text-light">Convention</button>
         <button @click="getEventsByType('sport')" class="btn text-light">Sport</button>
         <button @click="getEventsByType('digital')" class="btn text-light">Digital</button>
+        <button @click="getEventsByType('auction')" class="btn text-light">Auction</button>
       </div>
     </div>
     <section class="row scrollable">

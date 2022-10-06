@@ -1,6 +1,6 @@
 <template>
   <div class="attendee-card d-flex flex-wrap gap-2 p-2 bg-dark-lighten rounded" v-if="tickets">
-    <img v-for="t in tickets" :src="t.profile?.picture" :alt="t.profile?.name" :title="t.profile?.title">
+    <img v-for="t in tickets" :src="t.profile?.picture" :alt="t.profile?.name" :title="t.profile?.name">
   </div>
   <div v-else>
     Loading...

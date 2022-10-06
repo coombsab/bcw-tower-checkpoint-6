@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
+import { commentsService } from "./CommentsService.js"
 import { towerEventsService } from "./TowerEventsService.js"
 
 class TicketsService {
@@ -30,8 +31,16 @@ class TicketsService {
     await ticket.populate("profile", "name picture")
     await ticket.populate("event")
     await towerEventsService.updateTowerEventCapacity(eventId, -1)
+
     // TODO Change comment isAttending to true here, then to false when deleting a ticket... probably need to iterate over all comments on a ticket
-    // const hasTicket = await dbContext.Tickets.findOne({ accountId, eventId })
+    // const comments = await commentsService.getCommentsByIds(ticket.accountId, ticket.eventId)
+    // await comments.forEach(c => {
+    //   c.isAttending = true
+    //   c.save()
+    // })
+    // REVIEW How to use bulk save instead of waiting for each iteration
+    // comments.forEach( c => c.isAttending = true)
+    // await dbContext.Comments.bulkSave(comments)
 
     return ticket
   }

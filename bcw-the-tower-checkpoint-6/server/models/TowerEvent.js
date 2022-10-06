@@ -10,7 +10,7 @@ export const TowerEventSchema = new Schema ({
   capacity: { type: Number, required: true, min: 0, max: 9999999 },
   startDate: { type: Date, required: true },
   isCanceled: { type: Boolean, required: true, default: false },
-  type: { type: String, required: true, enum: ["concert", "convention", "sport", "digital"] }
+  type: { type: String, required: true, enum: ["concert", "convention", "sport", "digital", "auction"] }
 
 
 }, SCHEMA_OPTIONS)

@@ -1,7 +1,7 @@
 <template>
   <h1>My Events</h1>
   <div class="d-flex flex-wrap justify-content-around">
-    <EventCard class="my-2" v-for="t in tickets" :key="t.id" :towerEvent="t.event" />
+    <EventCard class="my-2" v-for="t in tickets" :key="t.eventId" :towerEvent="t.event" />
   </div>
   <h1>Upcoming events</h1>
   <div class="d-flex flex-column align-items-center">

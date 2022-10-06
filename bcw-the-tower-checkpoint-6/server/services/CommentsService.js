@@ -44,6 +44,11 @@ class CommentsService {
     }
     return comment
   }
+
+  async getCommentsByIds(accountId, eventId) {
+    const comments = await dbContext.Comments.find({ accountId, eventId })
+    return comments
+  }
 }
 
  export const commentsService = new CommentsService()

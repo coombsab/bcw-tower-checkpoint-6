@@ -21,15 +21,31 @@
       </li>
     </ul>
 
-    <button class="btn text-light mb-3">New Event</button>
+    <button class="btn text-light mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">New Event</button>
 
     <div class="text-danger logout" @click="logout" v-if="user.isAuthenticated">
       <i class="mdi mdi-logout"></i>
       <span>logout</span>
     </div>
   </span>
-<!-- 
-    <div class="dropdown my-2 my-lg-0" v-else>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-dark" id="exampleModalLabel">Add New Event</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-dark">
+          <CreateEventForm />
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- <div class="dropdown my-2 my-lg-0" v-else>
       <div class="dropdown-toggle selectable" data-bs-toggle="dropdown" aria-expanded="false" id="authDropdown">
       </div>
       <div class="dropdown-menu p-0 list-group w-100" aria-labelledby="authDropdown">
@@ -43,27 +59,30 @@
           logout
         </div>
       </div>
-    </div>
-  -->
+    </div> -->
+ 
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import CreateEventForm from './CreateEventForm.vue'
+
 export default {
-  setup() {
-    return {
-      user: computed(() => AppState.user),
-      account: computed(() => AppState.account),
-      async login() {
-        AuthService.loginWithPopup()
-      },
-      async logout() {
-        AuthService.logout({ returnTo: window.location.origin })
-      }
-    }
-  }
+    setup() {
+        return {
+            user: computed(() => AppState.user),
+            account: computed(() => AppState.account),
+            async login() {
+                AuthService.loginWithPopup();
+            },
+            async logout() {
+                AuthService.logout({ returnTo: window.location.origin });
+            }
+        };
+    },
+    components: { CreateEventForm }
 }
 </script>
 

@@ -16,11 +16,12 @@
 </template>
 
 <script>
-import { TowerEvent } from "../models/TowerEvent";
+import { Ticket } from "../models/Ticket.js";
+import { TowerEvent } from "../models/TowerEvent.js";
 
   export default {
     props: {
-      towerEvent: { type: TowerEvent }
+      towerEvent: { type: TowerEvent, required: true }
     },
     setup() {
       return {
