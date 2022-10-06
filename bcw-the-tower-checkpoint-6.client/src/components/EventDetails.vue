@@ -2,13 +2,11 @@
   <section class="bg-dark" v-if="towerEvent">
     <div class="event-details-card bg-dark-lighten d-flex flex-column flex-wrap">
       <div class="controls bg-dark-lighten w-100 d-flex align-items-center justify-content-end pe-4">
-        <i class="mdi mdi-delete controls selectable mt-2" @click="cancelEvent()" v-if="account.id === towerEvent.creatorId"></i>
+        <i class="mdi mdi-delete controls selectable mt-2" title="Delete Event" @click="cancelEvent()" v-if="account.id === towerEvent.creatorId"></i>
       </div>
       <div class="event-details-card-body d-flex align-items-center text-dark bg-dark-lighten px-4 pb-4 gap-3">
         <!-- TODO Figure out how to open a window to the background image -->
-        <!-- <div class="window">
-          
-        </div> -->
+        <!-- <div class="window"></div> -->
         <img :src="towerEvent.coverImg" :alt="towerEvent.name" height="200">
         <div class="event-details-content text-light w-100">
           <div class="d-flex justify-content-between my-4">
@@ -65,7 +63,7 @@ export default {
       return {
         tickets: computed(() => AppState.tickets),
         account: computed(() => AppState.account),
-        activeEvent: computed(() => AppState.activeEvent),
+        // activeEvent: computed(() => AppState.activeEvent),
         myTicket: computed(() => AppState.tickets.find(t => t.eventId === props.towerEvent.id && t.accountId === AppState.account.id)),
         async unattend() {
           try {

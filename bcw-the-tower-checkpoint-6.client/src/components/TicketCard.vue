@@ -1,6 +1,8 @@
 <template>
   <div class="ticket-card d-flex gap-3 bg-dark-lighten p-3 rounded" v-if="towerEvent">
-    <img :src="towerEvent.coverImg" :alt="towerEvent.name" :title="towerEvent.name">
+    <router-link :to="{ name: 'EventDetails', params: { eventId: towerEvent.id } }">
+      <img :src="towerEvent.coverImg" :alt="towerEvent.name" :title="towerEvent.name">
+    </router-link>
     <div class="d-flex flex-column">
       <div class="d-flex flex-column h-100">
         <span>{{towerEvent.name}}</span>
@@ -50,7 +52,7 @@ import Pop from "../utils/Pop";
 </script>
 
 <style scoped lang="scss">
-  .ticket-card>img {
+  img {
     height: 15.875rem;
   }
 

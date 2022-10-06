@@ -7,11 +7,11 @@ class TicketsService {
   async unattendByTicketId(ticketId) {
     const res = await api.delete(`api/tickets/${ticketId}`)
     AppState.tickets = AppState.tickets.filter(t => t.id !== ticketId)
-    const activeEvent = AppState.events.find(e => e.id === ticketId.eventId)
-    if (activeEvent) {
-      AppState.activeEvent = activeEvent
-      AppState.activeEvent.capacity++
-    }
+    // const activeEvent = AppState.events.find(e => e.id === ticketId.eventId)
+    // if (activeEvent) {
+    //   AppState.activeEvent = activeEvent
+    // }
+    AppState.activeEvent.capacity++
   }
 
   async addTicketByEventId(eventId) {
@@ -21,11 +21,11 @@ class TicketsService {
     }
     const res = await api.post("api/tickets", { eventId })
     AppState.tickets.push(new Ticket(res.data))
-    const activeEvent = AppState.events.find(e => e.id === eventId)
-    if (activeEvent) {
-      AppState.activeEvent = activeEvent
-      AppState.activeEvent.capacity--
-    }
+    // const activeEvent = AppState.events.find(e => e.id === eventId)
+    // if (activeEvent) {
+    //   AppState.activeEvent = activeEvent
+    // }
+    AppState.activeEvent.capacity--
   }
 }
 

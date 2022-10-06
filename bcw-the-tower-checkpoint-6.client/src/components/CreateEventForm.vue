@@ -70,7 +70,7 @@ export default {
         try {
           const towerEvent = await towerEventsService.addEvent(editable.value)
           Modal.getOrCreateInstance(document.getElementById('addEventModal')).hide()
-          editable = {}
+          editable.value = {}
           router.push({ name: "EventDetails", params: { eventId: towerEvent.id }})
         }
         catch(error) {

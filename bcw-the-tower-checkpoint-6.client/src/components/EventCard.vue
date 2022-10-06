@@ -5,7 +5,11 @@
         <div class="event-card-body p-2">
           <span class="name text-truncate text-white">{{towerEvent.name}}</span>
           <span class="desc text-truncate text-white">{{towerEvent.description}}</span>
-          <span class="capacity text-white">{{towerEvent.capacity}} left</span>
+          <div class="d-flex justify-content-between align-items-center">
+            <span v-if="towerEvent.capacity < 1" class="text-danger"><strong>SOLD OUT</strong></span>
+            <span v-if="towerEvent.isCanceled" class="text-danger"><strong>CANCELLED</strong></span>
+            <span class="capacity text-white">{{towerEvent.capacity}} left</span>
+          </div>
         </div>
       </div>
     </router-link>

@@ -6,7 +6,7 @@
 
     <div class="mb-3" v-if="account.picture || user.picture">
       <router-link :to="{ name: 'Account' }">
-        <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded"/>
+        <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded" title="Go to account page"/>
       </router-link>
     </div>
     <div v-else>

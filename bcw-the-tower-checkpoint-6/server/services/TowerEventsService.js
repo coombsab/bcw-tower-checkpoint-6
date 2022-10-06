@@ -28,7 +28,7 @@ class TowerEventsService {
     // @ts-ignore
     const isCreator = towerEvent.creatorId.toString() === userId
     if (!isCreator) {
-      throw new Forbidden("You are not the creator of this event.  You may not edit it.s")
+      throw new Forbidden("You are not the creator of this event.  You may not edit it.")
     }
 
     towerEvent.name = eventData.name || towerEvent.name
@@ -45,7 +45,7 @@ class TowerEventsService {
   }
 
   async updateTowerEventCapacity(eventId, change) {
-    const towerEvent = await this.getEventIfNotCanceled(eventId)
+    const towerEvent = await this.getTowerEventById(eventId)
     towerEvent.capacity += change
     await towerEvent.save()
     return towerEvent
