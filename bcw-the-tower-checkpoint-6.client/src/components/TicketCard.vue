@@ -25,7 +25,15 @@ import { TowerEvent } from "../models/TowerEvent.js";
     },
     setup() {
       return {
-
+        async unattend() {
+          try {
+          
+          }
+          catch(error) {
+            logger.log('[unattend]', error)
+            Pop.error(error.message)
+          }
+        }
       }
     }
   }

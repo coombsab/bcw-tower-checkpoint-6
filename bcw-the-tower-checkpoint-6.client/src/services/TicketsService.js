@@ -11,6 +11,7 @@ class TicketsService {
     if (activeEvent) {
       AppState.activeEvent = activeEvent
     }
+    AppState.activeEvent.capacity++
   }
 
   async addTicketByEventId(eventId) {
@@ -24,6 +25,7 @@ class TicketsService {
     if (activeEvent) {
       AppState.activeEvent = activeEvent
     }
+    AppState.activeEvent.capacity--
   }
 }
 
