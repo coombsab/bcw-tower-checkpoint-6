@@ -26,7 +26,11 @@ class TicketsService {
     return tickets
   }
   async addTicket(eventId, accountId) {
-    await towerEventsService.getEventIfNotCanceled(eventId)
+    const towerEvent = await towerEventsService.getEventIfNotCanceled(eventId)
+    // @ts-ignore
+    if (towerEvent.capacity < 1) {
+      throw new BadRequest("Event capacity has been reached and another ticket cannot be added.")
+    }
     const ticket = await dbContext.Tickets.create({ eventId, accountId})
     await ticket.populate("profile", "name picture")
     await ticket.populate("event")

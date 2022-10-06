@@ -9,7 +9,7 @@
         <!-- <div class="window">
           
         </div> -->
-        <img :src="towerEvent.coverImg" alt="name" height="200">
+        <img :src="towerEvent.coverImg" :alt="towerEvent.name" height="200">
         <div class="event-details-content text-light w-100">
           <div class="d-flex justify-content-between my-4">
             <div class="d-flex flex-column">
@@ -32,7 +32,9 @@
             <div class="d-flex gap-2">
               <button @click="unattend()" class="btn btn-danger" v-if="myTicket">Unattend</button>
               <div v-else>
-                <button @click="attend()" class="btn btn-warning" v-if="!towerEvent.isCanceled && towerEvent.capacity !== 0">Attend <i class="mdi mdi-star-face"></i></button>
+                <div v-if="!towerEvent.isCanceled">
+                  <button @click="attend()" class="btn btn-warning" v-if="towerEvent.capacity > 0">Attend <i class="mdi mdi-star-face"></i></button>
+                </div>
               </div>
             </div>
           </div>
@@ -49,11 +51,8 @@
 import { computed } from "@vue/reactivity";
 import { TowerEvent } from "../models/TowerEvent.js";
 import { AppState } from "../AppState";
-import { accountService } from "../services/AccountService";
-import { onMounted } from "vue";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
-import { Account } from "../models/Account";
 import { ticketsService } from "../services/TicketsService";
 import { towerEventsService } from "../services/TowerEventsService";
 
@@ -63,26 +62,11 @@ export default {
     towerEvent: { type: TowerEvent }
   },
   setup(props) {
-    function isAttending() {
-      AppState.tickets.forEach(ticket => {
-        if (ticket.eventId === props.towerEvent.id && ticket.accountId === AppState.account.id) {
-          AppState.isAttending = true
-        }
-      })
-      AppState.isAttending = false
-      AppState.myTicketForCurrentEvent = AppState.tickets.find(t => t.eventId === props.towerEvent.id && t.accountId === AppState.account.id)
-    }
-
-    onMounted(() => {
-      isAttending()
-    })
       return {
         tickets: computed(() => AppState.tickets),
         account: computed(() => AppState.account),
         activeEvent: computed(() => AppState.activeEvent),
-        attendance: computed(() => AppState.isAttending),
-        myTicket: computed(() => AppState.myTicketForCurrentEvent),
-        isAttending,
+        myTicket: computed(() => AppState.tickets.find(t => t.eventId === props.towerEvent.id && t.accountId === AppState.account.id)),
         async unattend() {
           try {
             const ticket = AppState.tickets.find(t => t.eventId === props.towerEvent.id && t.accountId === this.account.id)
@@ -90,7 +74,6 @@ export default {
               throw new Error("You cannot unattend an event you do not have a ticket for.")
             }
             await ticketsService.unattendByTicketId(ticket.id)
-            this.isAttending()
           }
           catch(error) {
             logger.log('[unattend]', error)
@@ -100,7 +83,6 @@ export default {
         async attend() {
           try {
             await ticketsService.addTicketByEventId(props.towerEvent.id)
-            this.isAttending()
           }
           catch(error) {
             logger.log('[attend]', error)
