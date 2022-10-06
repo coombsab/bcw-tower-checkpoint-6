@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import { Ticket } from "../models/Ticket"
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
@@ -10,6 +11,12 @@ class AccountService {
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
+  }
+
+  async getTicketsByAccountId() {
+    AppState.tickets = []
+    const res = await api.get("/account/tickets")
+    AppState.tickets = res.data.map(data => new Ticket(data))
   }
 }
 

@@ -33,11 +33,13 @@ class TowerEventsService {
   }
 
   async getCommentsByEventId(eventId) {
+    AppState.comments = []
     const res = await api.get(`api/events/${eventId}/comments`)
     AppState.comments = res.data.map(data => new Comment(data))
   }
 
   async getTicketsForEvent(eventId) {
+    AppState.tickets = []
     const res = await api.get(`api/events/${eventId}/tickets`)
     AppState.tickets = res.data.map(data => new Ticket(data))
   }

@@ -1,13 +1,18 @@
 <template>
-  <router-link :to="{ name: 'EventDetails', params: { eventId: towerEvent.id } }">
-    <div class="event-card card bg-dark text-visible" :style="{backgroundImage: `url(${towerEvent.coverImg})`}">
-      <div class="event-card-body p-2">
-        <span class="name text-truncate text-white">{{towerEvent.name}}</span>
-        <span class="desc text-truncate text-white">{{towerEvent.description}}</span>
-        <span class="capacity text-white">{{towerEvent.capacity}} left</span>
+  <div v-if="towerEvent">
+    <router-link :to="{ name: 'EventDetails', params: { eventId: towerEvent.id } }">
+      <div class="event-card card bg-dark text-visible" :style="{backgroundImage: `url(${towerEvent.coverImg})`}">
+        <div class="event-card-body p-2">
+          <span class="name text-truncate text-white">{{towerEvent.name}}</span>
+          <span class="desc text-truncate text-white">{{towerEvent.description}}</span>
+          <span class="capacity text-white">{{towerEvent.capacity}} left</span>
+        </div>
       </div>
-    </div>
-  </router-link>
+    </router-link>
+  </div>
+  <div v-else>
+    <span>Loading...</span>
+  </div>
 </template>
 
 <script>

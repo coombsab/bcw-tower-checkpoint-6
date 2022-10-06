@@ -23,7 +23,7 @@
 
     <button class="btn text-light mb-3">New Event</button>
 
-    <div class="text-danger logout" @click="logout">
+    <div class="text-danger logout" @click="logout" v-if="user.isAuthenticated">
       <i class="mdi mdi-logout"></i>
       <span>logout</span>
     </div>
