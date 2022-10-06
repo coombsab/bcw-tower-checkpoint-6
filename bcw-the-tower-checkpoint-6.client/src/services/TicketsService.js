@@ -10,8 +10,8 @@ class TicketsService {
     const activeEvent = AppState.events.find(e => e.id === ticketId.eventId)
     if (activeEvent) {
       AppState.activeEvent = activeEvent
+      AppState.activeEvent.capacity++
     }
-    AppState.activeEvent.capacity++
   }
 
   async addTicketByEventId(eventId) {
@@ -24,8 +24,8 @@ class TicketsService {
     const activeEvent = AppState.events.find(e => e.id === eventId)
     if (activeEvent) {
       AppState.activeEvent = activeEvent
+      AppState.activeEvent.capacity--
     }
-    AppState.activeEvent.capacity--
   }
 }
 
