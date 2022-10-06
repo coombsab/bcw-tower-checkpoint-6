@@ -53,11 +53,11 @@ class TowerEventsService {
   }
 
   async addEvent(eventData) {
+    AppState.activeEvent = null
     const res = await api.post("api/events", eventData)
     const towerEvent = new TowerEvent(res.data)
     AppState.events.push(towerEvent)
-    return towerEvent
-    
+    AppState.activeEvent = towerEvent
   }
 
   async cancelEvent(eventId) {

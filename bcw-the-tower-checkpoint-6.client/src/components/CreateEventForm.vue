@@ -66,12 +66,13 @@ export default {
       editable,
       router,
       todayFormatted: computed(() => AppState.todayFormatted),
+      activeEvent: computed(() => AppState.activeEvent),
       async handleSubmit() {
         try {
-          const towerEvent = await towerEventsService.addEvent(editable.value)
+          await towerEventsService.addEvent(editable.value)
           Modal.getOrCreateInstance(document.getElementById('addEventModal')).hide()
           editable.value = {}
-          router.push({ name: "EventDetails", params: { eventId: towerEvent.id }})
+          router.push({ name: "EventDetails", params: { eventId: this.activeEvent.id }})
         }
         catch(error) {
           logger.log('[handleSubmit]', error)
