@@ -2,7 +2,7 @@
   <section class="bg-dark" v-if="towerEvent">
     <div class="event-details-card bg-dark-lighten d-flex flex-column flex-wrap">
       <div class="controls bg-dark-lighten w-100 d-flex align-items-center justify-content-end pe-4">
-        <i class="mdi mdi-delete controls selectable mt-2" title="Delete Event" @click="cancelEvent()" v-if="account.id === towerEvent.creatorId"></i>
+        <i class="mdi mdi-delete controls selectable mt-2" title="Delete Event" @click="cancelEvent()" v-if="account.id === towerEvent.creatorId && !towerEvent.isCanceled"></i>
       </div>
       <div class="event-details-card-body d-flex align-items-center text-dark bg-dark-lighten px-4 pb-4 gap-3">
         <!-- TODO Figure out how to open a window to the background image -->

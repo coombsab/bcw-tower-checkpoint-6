@@ -1,11 +1,16 @@
 <template>
-  <h1>My Events</h1>
-  <div class="d-flex flex-wrap justify-content-around">
-    <EventCard class="my-2" v-for="t in tickets" :key="t.eventId" :towerEvent="t.event" />
+  <div v-if="tickets.length > 0">
+    <h1>My Events</h1>
+    <div class="d-flex flex-wrap justify-content-around">
+      <EventCard class="my-2" v-for="t in tickets" :key="t.eventId" :towerEvent="t.event" />
+    </div>
+    <h1>Upcoming events</h1>
+    <div class="d-flex flex-column align-items-center">
+      <TicketCard class="my-2" v-for="t in tickets" :key="t.id" :towerEvent="t.event" />
+    </div>
   </div>
-  <h1>Upcoming events</h1>
-  <div class="d-flex flex-column align-items-center">
-    <TicketCard class="my-2" v-for="t in tickets" :key="t.id" :towerEvent="t.event" />
+  <div v-else>
+    <span>You do not currently have tickets for any events</span>
   </div>
 </template>
 

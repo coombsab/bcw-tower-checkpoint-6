@@ -1,12 +1,12 @@
 <template>
   <span class="d-flex flex-column align-items-center mb-3">
-    <button class="btn selectable text-light text-uppercase my-2 my-lg-0" @click="login" v-if="!user.isAuthenticated">
+    <button class="btn selectable btn-success my-2 my-lg-0" @click="login" aria-label="Login" v-if="!user.isAuthenticated">
       Login
     </button>
 
     <div class="mb-3" v-if="account.picture || user.picture">
       <router-link :to="{ name: 'Account' }">
-        <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded" title="Go to account page"/>
+        <img :src="account.picture || user.picture" alt="account photo" class="rounded photo" aria-label="Go to account page" title="Go to account page" />
       </router-link>
     </div>
     <div v-else>
@@ -15,52 +15,29 @@
 
     <ul class="navbar-nav text-center">
       <li>
-        <router-link :to="{ name: 'Home' }" class="btn text-light selectable text-uppercase">
-          Home
+        <router-link :to="{ name: 'Home' }" class="btn text-info selectable" aria-label="Go to Home page">
+          home
         </router-link>
       </li>
     </ul>
-
-    <button class="btn text-light mb-3" data-bs-toggle="modal" data-bs-target="#addEventModal">New Event</button>
-
-    <div class="text-danger logout" @click="logout" v-if="user.isAuthenticated">
-      <i class="mdi mdi-logout"></i>
-      <span>logout</span>
-    </div>
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addEventModal" aria-label="Add new event">New Event</button>
+    <button class="btn btn-dark bg-dark-lighten" @click="logout" v-if="user.isAuthenticated" aria-label="Logout">logout</button>
   </span>
 
   <!-- Modal -->
   <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content bg-dark-lighten">
         <div class="modal-header">
-          <h1 class="modal-title fs-5 text-dark" id="addEventModalLabel">Add New Event</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5 text-info" id="addEventModalLabel">Add New Event</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close"></button>
         </div>
-        <div class="modal-body text-dark">
+        <div class="modal-body">
           <CreateEventForm />
         </div>
       </div>
     </div>
   </div>
-
-
-    <!-- <div class="dropdown my-2 my-lg-0" v-else>
-      <div class="dropdown-toggle selectable" data-bs-toggle="dropdown" aria-expanded="false" id="authDropdown">
-      </div>
-      <div class="dropdown-menu p-0 list-group w-100" aria-labelledby="authDropdown">
-        <router-link :to="{ name: 'Account' }">
-          <div class="list-group-item list-group-item-action hoverable">
-            Manage Account
-          </div>
-        </router-link>
-        <div class="list-group-item list-group-item-action hoverable text-danger" @click="logout">
-          <i class="mdi mdi-logout"></i>
-          logout
-        </div>
-      </div>
-    </div> -->
- 
 </template>
 
 <script>
@@ -108,5 +85,11 @@ li {
 
 .logout:hover {
   cursor: pointer;
+}
+
+.photo {
+  height: 5.25rem;
+  width: 5.25rem;
+  border: 1px solid #56C7FB;
 }
 </style>

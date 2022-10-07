@@ -2,24 +2,44 @@
   <!-- TODO make into floating labels -->
   <form @submit.prevent="handleSubmit()">
     <div class="d-flex flex-column">
-      <input type="text" placeholder="Event Name" v-model="editable.name" maxlength="50" required>
-      <input type="text" placeholder="Event Description" v-model="editable.description" maxlength="1000" required>
-      <input type="text" placeholder="Event Location" v-model="editable.location" maxlength="50" required>
-      <input type="url" placeholder="Event Cover Image" v-model="editable.coverImg" maxlength="500" required>
-      <input type="number" placeholder="Event Capacity" v-model="editable.capacity" min="0" max="9999999" required>
+      <div class="form-floating mb-3 text-dark">
+        <input type="text" class="form-control" id="floatingName" placeholder="Event Name" v-model="editable.name" maxlength="50" required>
+        <label for="floatingName">Event Name</label>
+      </div>
+      <div class="form-floating mb-3 text-dark">
+        <input type="text" class="form-control" id="floatingDescription" placeholder="Event Description" v-model="editable.description" maxlength="1000" required>
+        <label for="floatingDescription">Event Description</label>
+      </div>
+      <div class="form-floating mb-3 text-dark">
+        <input type="text" class="form-control" id="floatingLocation" placeholder="Event Location" v-model="editable.location" maxlength="50" required>
+        <label for="floatingLocation">Event Location</label>
+      </div>
+      <div class="form-floating mb-3 text-dark">
+        <input type="url" class="form-control" id="floatingImage" placeholder="Event Cover Image" v-model="editable.coverImg" maxlength="500" required>
+        <label for="floatingImage">Event Cover Image</label>
+      </div>
+      <div class="form-floating mb-3 text-dark">
+        <input type="number" class="form-control" id="floatingCapacity" placeholder="Event Capacity" v-model="editable.capacity" min="0" max="9999999" required>
+        <label for="floatingCapacity">Event Capacity</label>
+      </div>
     </div>
-    <div class="d-flex justify-content-between">
-      <input type="datetime-local" :min="todayFormatted" v-model="editable.startDate" required>
-      <select name="type" id="type" v-model="editable.type">
-        <option value="concert">Concert</option>
-        <option value="convention">Convention</option>
-        <option value="sport">Sport</option>
-        <option value="digital">Digital</option>
-        <option value="auction">Auction</option>
-      </select>
+    <div class="d-flex gap-3">
+      <input type="datetime-local" class="form-control" id="floatingDateTime" aria-label="Select a start time" :min="todayFormatted" v-model="editable.startDate" required>
+      <div class="form-floating text-dark w-100">
+        <select name="type" class="form-select" id="floatingSelect" aria-label="Floating Select with Label" v-model="editable.type" required>
+          <option value="concert">Concert</option>
+          <option value="convention">Convention</option>
+          <option value="sport">Sport</option>
+          <option value="digital">Digital</option>
+          <option value="auction">Auction</option>
+        </select>
+        <label for="floatingSelect">Select a Type</label>
+      </div>
     </div>
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-primary">Create Event</button>
+    <div class="d-flex justify-content-between mt-3 align-items-center">
+      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close Modal">Close</button>
+      <button type="submit" class="btn btn-dark" aria-label="Create Event">Create Event</button>
+    </div>
   </form>
 </template>
 
@@ -86,7 +106,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  input {
-    margin-bottom: 0.5rem;
-  }
+
 </style>
