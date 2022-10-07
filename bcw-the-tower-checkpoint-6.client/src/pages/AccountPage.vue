@@ -1,5 +1,5 @@
 <template>
-  <div v-if="tickets.length > 0">
+  <div class="text-info" v-if="tickets.length > 0">
     <h1>My Events</h1>
     <div class="d-flex flex-wrap justify-content-around">
       <EventCard class="my-2" v-for="t in tickets" :key="t.eventId" :towerEvent="t.event" />

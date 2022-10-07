@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit()" class="d-flex flex-column px-5">
-    <textarea name="commentBody" id="commentBody" cols="30" rows="5" v-model="editable" aria-label="Input a comment" placeholder="Tell the people..."></textarea>
-    <button type="submit" aria-label="Post Comment" class="align-self-end mt-3">post comment</button>
+    <textarea name="commentBody" id="commentBody" class="form-control" cols="30" rows="5" v-model="editable" aria-label="Input a comment" placeholder="Tell the people..."></textarea>
+    <button type="submit" aria-label="Post Comment" class="align-self-end my-2 btn btn-success">post comment</button>
   </form>
 </template>
 

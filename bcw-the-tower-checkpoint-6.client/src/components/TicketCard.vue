@@ -1,6 +1,6 @@
 <template>
-  <div class="ticket-card d-flex gap-3 bg-dark-lighten p-3 rounded" v-if="towerEvent">
-    <router-link :to="{ name: 'EventDetails', params: { eventId: towerEvent.id } }">
+  <div class="ticket-card d-flex gap-3 bg-dark-lighten p-3 rounded text-info" v-if="towerEvent">
+    <router-link aria-label="Go to Event Details page" :to="{ name: 'EventDetails', params: { eventId: towerEvent.id } }">
       <img :src="towerEvent.coverImg" :alt="towerEvent.name" :title="towerEvent.name">
     </router-link>
     <div class="d-flex flex-column">
@@ -9,7 +9,7 @@
         <span>{{towerEvent.location}}</span>
         <span>{{new Date(towerEvent.startDate).toDateString() + " @ " + new Date(towerEvent.startDate).toLocaleTimeString()}}</span>
       </div>
-      <button class="btn btn-danger px-5" @click="unattend()">not going</button>
+      <button class="btn btn-danger px-5" aria-label="Unattend event" @click="unattend()">not going</button>
     </div>
   </div>
   <div v-else>
