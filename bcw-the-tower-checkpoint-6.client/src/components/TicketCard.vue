@@ -1,9 +1,9 @@
 <template>
-  <div class="ticket-card d-flex gap-3 bg-dark-lighten p-3 rounded text-info elevation-2" v-if="towerEvent">
+  <div class="ticket-card d-flex bg-dark-lighten rounded text-info elevation-2" v-if="towerEvent">
     <router-link aria-label="Go to Event Details page" :to="{ name: 'EventDetails', params: { eventId: towerEvent.id } }">
       <img :src="towerEvent.coverImg" :alt="towerEvent.name" :title="towerEvent.name">
     </router-link>
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column p-3">
       <div class="d-flex flex-column h-100">
         <span><strong>{{towerEvent.name}}</strong></span>
         <span>{{towerEvent.location}}</span>
