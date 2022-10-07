@@ -1,12 +1,12 @@
 <template>
   <div class="event-details">
     <EventDetails :towerEvent="towerEvent" />
-    <p>See who is attending</p>
+    <p class="text-info">See who is attending</p>
     <AttendeeCard />
 
-    <p class="mx-10">What people are saying</p>
+    <p class="mx-10 text-info">What people are saying</p>
     <div class="comments-card bg-dark-lighten d-flex flex-column mx-10">
-      <div class="align-self-end pe-5">
+      <div class="align-self-end pe-5 text-info">
         <p>Join the conversation</p>
       </div>
       <CreateComment />

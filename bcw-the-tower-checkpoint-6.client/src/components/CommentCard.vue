@@ -5,7 +5,7 @@
       <div class="comment-card-body-title d-flex gap-2 mb-2 align-items-center">
         <div class="d-flex justify-content-between align-items-center w-100">
           <h4>{{comment.creator.name}}</h4>
-          <i class="mdi mdi-delete controls selectable mt-2 text-dark on-hover" title="Delete Event" @click="removeComment()" v-if="comment.creatorId === account.id"></i>
+          <i class="mdi mdi-delete controls selectable mt-2 text-dark on-hover" title="Remove Comment" aria-label="Remove Comment" @click="removeComment()" v-if="comment.creatorId === account.id"></i>
         </div>
         <h6 v-if="comment.isAttending">Attending this event</h6>
       </div>

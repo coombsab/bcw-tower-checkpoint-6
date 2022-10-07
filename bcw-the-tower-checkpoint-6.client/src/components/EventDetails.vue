@@ -2,13 +2,13 @@
   <section class="bg-dark" v-if="towerEvent">
     <div class="event-details-card bg-dark-lighten d-flex flex-column flex-wrap">
       <div class="controls bg-dark-lighten w-100 d-flex align-items-center justify-content-end pe-4">
-        <i class="mdi mdi-delete controls selectable mt-2" title="Delete Event" @click="cancelEvent()" v-if="account.id === towerEvent.creatorId && !towerEvent.isCanceled"></i>
+        <i class="mdi mdi-delete controls selectable mt-2 text-info" title="Cancel Event" aria-label="Cancel Event" @click="cancelEvent()" v-if="account.id === towerEvent.creatorId && !towerEvent.isCanceled"></i>
       </div>
-      <div class="event-details-card-body d-flex align-items-center text-dark bg-dark-lighten px-4 pb-4 gap-3">
+      <div class="event-details-card-body d-flex align-items-center bg-dark-lighten px-4 pb-4 gap-3">
         <!-- TODO Figure out how to open a window to the background image -->
         <!-- <div class="window"></div> -->
         <img :src="towerEvent.coverImg" :alt="towerEvent.name" height="200">
-        <div class="event-details-content text-light w-100">
+        <div class="event-details-content text-info w-100">
           <div class="d-flex justify-content-between my-4">
             <div class="d-flex flex-column">
               <span>{{towerEvent.name}}</span>
@@ -22,16 +22,16 @@
           <p class="my-4">{{towerEvent.description}}</p>
           <div class="d-flex justify-content-between align-items-center content-end">
             <div class="d-flex align-items-center gap-3">
-              <span>{{towerEvent.capacity}} spots left</span>
+              <span><span class="capacity" :class="towerEvent.capacity > 0 ? 'text-primary' : 'text-danger'">{{towerEvent.capacity}}</span> spots left</span>
               <span v-if="towerEvent.isCanceled" class="text-danger"><strong>CANCELLED</strong></span>
               <span v-if="towerEvent.capacity === 0" class="text-danger"><strong>SOLD OUT</strong></span>
             </div>
             <!-- TODO Figure out changing which button is displayed -->
             <div class="d-flex gap-2">
-              <button @click="unattend()" class="btn btn-danger" v-if="myTicket">Unattend</button>
+              <button aria-label="Unattend Event" @click="unattend()" class="btn btn-danger" v-if="myTicket">Unattend</button>
               <div v-else>
                 <div v-if="!towerEvent.isCanceled">
-                  <button @click="attend()" class="btn btn-warning" v-if="towerEvent.capacity > 0">Attend <i class="mdi mdi-star-face"></i></button>
+                  <button aria-label="Attend Event" @click="attend()" class="btn btn-warning" v-if="towerEvent.capacity > 0">Attend <i class="mdi mdi-star-face"></i></button>
                 </div>
               </div>
             </div>
@@ -43,6 +43,15 @@
   <section v-else>
     <span>Loading...</span>
   </section>
+
+  <!-- TODO Experimenting with masking and clipping to do a similar effect to the figma -->
+  <!-- <svg width="600" height="400">
+    <mask id="svgmask1">
+      <polygon fill="#ffffff" points="200 0, 400 400, 0 400"></polygon>
+    </mask>
+    <image xmlns:xlink="http://www.w3.org/1999/xlink" v-bind:xlink:href="towerEvent.coverImg" mask="url(#svgmask1)" class="mask-img"></image>
+  </svg>
+  <img :src="towerEvent.coverImg" alt="" class="window"> -->
 </template>
 
 <script>
@@ -116,5 +125,19 @@ export default {
     background-image: url("https://thiscatdoesnotexist.com");
     background-size: cover;
     background-position: center;
+  }
+
+  .window {
+    clip-path: circle(200px at center);
+    height: 20rem;
+    width: 30rem;
+  }
+  .mask-img {
+    height: 20rem;
+    width: 30rem;
+  }
+
+  .capacity {
+    font-weight: 800;
   }
 </style>
