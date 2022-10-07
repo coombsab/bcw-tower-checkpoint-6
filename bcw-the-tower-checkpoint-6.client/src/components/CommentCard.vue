@@ -1,7 +1,7 @@
 <template>
   <div class="comment-card my-2 d-flex gap-2 bg-dark-lighten align-items-center" v-if="comment">
-    <img :src="comment.creator.picture" :alt="comment.creator.name">
-    <div class="comment-card-body p-2 bg-light text-dark w-100">
+    <img :src="comment.creator.picture" :alt="comment.creator.name" class="elevation-2">
+    <div class="comment-card-body p-2 bg-light text-dark w-100 elevation-2 rounded">
       <div class="comment-card-body-title d-flex gap-2 mb-2 align-items-center">
         <div class="d-flex justify-content-between align-items-center w-100">
           <h4>{{comment.creator.name}}</h4>

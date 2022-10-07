@@ -1,5 +1,5 @@
 <template>
-  <div class="ticket-card d-flex gap-3 bg-dark-lighten p-3 rounded text-info" v-if="towerEvent">
+  <div class="ticket-card d-flex gap-3 bg-dark-lighten p-3 rounded text-info elevation-2" v-if="towerEvent">
     <router-link aria-label="Go to Event Details page" :to="{ name: 'EventDetails', params: { eventId: towerEvent.id } }">
       <img :src="towerEvent.coverImg" :alt="towerEvent.name" :title="towerEvent.name">
     </router-link>

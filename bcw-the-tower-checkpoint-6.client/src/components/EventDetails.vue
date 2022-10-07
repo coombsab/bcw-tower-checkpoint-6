@@ -1,14 +1,14 @@
 <template>
-  <section class="bg-dark" v-if="towerEvent">
+  <section class="bg-dark elevation-2" v-if="towerEvent">
     <div class="event-details-card bg-dark-lighten d-flex flex-column flex-wrap">
-      <div class="controls bg-dark-lighten w-100 d-flex align-items-center justify-content-end pe-4">
-        <i class="mdi mdi-delete controls selectable mt-2 text-info" title="Cancel Event" aria-label="Cancel Event" @click="cancelEvent()" v-if="account.id === towerEvent.creatorId && !towerEvent.isCanceled"></i>
-      </div>
       <div class="event-details-card-body d-flex align-items-center bg-dark-lighten px-4 pb-4 gap-3">
         <!-- TODO Figure out how to open a window to the background image -->
         <!-- <div class="window"></div> -->
-        <img :src="towerEvent.coverImg" :alt="towerEvent.name" height="200">
+        <img :src="towerEvent.coverImg" :alt="towerEvent.name" height="200" class="mt-4">
         <div class="event-details-content text-info w-100">
+          <div class="controls bg-dark-lighten w-100 d-flex align-items-center justify-content-end">
+            <i class="mdi mdi-delete controls selectable mt-2 text-info" title="Cancel Event" aria-label="Cancel Event" @click="cancelEvent()" v-if="account.id === towerEvent.creatorId && !towerEvent.isCanceled"></i>
+          </div>
           <div class="d-flex justify-content-between my-4">
             <div class="d-flex flex-column">
               <span>{{towerEvent.name}}</span>
@@ -28,10 +28,10 @@
             </div>
             <!-- TODO Figure out changing which button is displayed -->
             <div class="d-flex gap-2">
-              <button aria-label="Unattend Event" @click="unattend()" class="btn btn-danger" v-if="myTicket">Unattend</button>
+              <button aria-label="Unattend Event" @click="unattend()" class="btn btn-danger elevation-3" v-if="myTicket">Unattend</button>
               <div v-else>
                 <div v-if="!towerEvent.isCanceled">
-                  <button aria-label="Attend Event" @click="attend()" class="btn btn-warning" v-if="towerEvent.capacity > 0">Attend <i class="mdi mdi-human"></i></button>
+                  <button aria-label="Attend Event" @click="attend()" class="btn btn-warning elevation-3" v-if="towerEvent.capacity > 0">Attend <i class="mdi mdi-human"></i></button>
                 </div>
               </div>
             </div>

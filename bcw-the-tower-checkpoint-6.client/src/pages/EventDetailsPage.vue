@@ -6,7 +6,7 @@
 
     <p class="mx-10 text-info">What people are saying</p>
     <div class="comments-card bg-dark-lighten d-flex flex-column mx-10">
-      <div class="align-self-end pe-5 text-info">
+      <div class="align-self-end pe-5 text-success">
         <p>Join the conversation</p>
       </div>
       <CreateComment />
