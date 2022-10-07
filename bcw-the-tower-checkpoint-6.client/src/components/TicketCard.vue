@@ -5,7 +5,7 @@
     </router-link>
     <div class="d-flex flex-column">
       <div class="d-flex flex-column h-100">
-        <span>{{towerEvent.name}}</span>
+        <span><strong>{{towerEvent.name}}</strong></span>
         <span>{{towerEvent.location}}</span>
         <span>{{new Date(towerEvent.startDate).toDateString() + " @ " + new Date(towerEvent.startDate).toLocaleTimeString()}}</span>
       </div>

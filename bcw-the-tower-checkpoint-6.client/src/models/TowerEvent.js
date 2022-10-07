@@ -9,7 +9,7 @@ export class TowerEvent {
     this.capacity = data.capacity
     this.rawDate = data.startDate
     this.startDate = new Date(data.startDate)
-    this.formattedDate = this.startDate.toLocaleDateString()
+    this.formattedDate = this.startDate.toDateString()
     this.formattedTime = this.startDate.toLocaleTimeString()
     this.isCanceled = data.isCanceled
     this.type = data.type

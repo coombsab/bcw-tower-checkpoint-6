@@ -1,17 +1,17 @@
 <template>
   <section class="bg-dark elevation-2" v-if="towerEvent">
-    <div class="event-details-card bg-dark-lighten d-flex flex-column flex-wrap">
-      <div class="event-details-card-body d-flex align-items-center bg-dark-lighten px-4 pb-4 gap-3">
+    <div class="event-details-card bg-dark-lighten d-flex flex-column flex-wrap rounded" :style="{ backgroundImage: `url(${towerEvent.coverImg})` }">
+      <div class="event-details-card-body d-flex align-items-center bg-dark-lighten px-4 pb-4 gap-3 rounded">
         <!-- TODO Figure out how to open a window to the background image -->
         <!-- <div class="window"></div> -->
-        <img :src="towerEvent.coverImg" :alt="towerEvent.name" height="200" class="mt-4">
+        <img :src="towerEvent.coverImg" :alt="towerEvent.name" height="200" class="mt-4 rounded">
         <div class="event-details-content text-info w-100">
-          <div class="controls bg-dark-lighten w-100 d-flex align-items-center justify-content-end">
+          <div class="controls w-100 d-flex align-items-center justify-content-end">
             <i class="mdi mdi-delete controls selectable mt-2 text-info" title="Cancel Event" aria-label="Cancel Event" @click="cancelEvent()" v-if="account.id === towerEvent.creatorId && !towerEvent.isCanceled"></i>
           </div>
           <div class="d-flex justify-content-between my-4">
             <div class="d-flex flex-column">
-              <span>{{towerEvent.name}}</span>
+              <span><strong>{{towerEvent.name}}</strong></span>
               <span>{{towerEvent.location}}</span>
             </div>
             <div class="d-flex flex-column">
@@ -122,9 +122,14 @@ export default {
     margin-bottom: 0.125rem;
   }
   .event-details-card {
-    background-image: url("https://thiscatdoesnotexist.com");
+    // background-image: url("https://thiscatdoesnotexist.com");
     background-size: cover;
     background-position: center;
+  }
+
+  .event-details-card-body {
+    backdrop-filter: blur(15px);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   .window {
