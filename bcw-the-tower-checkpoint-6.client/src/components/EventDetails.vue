@@ -31,7 +31,7 @@
               <button aria-label="Unattend Event" @click="unattend()" class="btn btn-danger" v-if="myTicket">Unattend</button>
               <div v-else>
                 <div v-if="!towerEvent.isCanceled">
-                  <button aria-label="Attend Event" @click="attend()" class="btn btn-warning" v-if="towerEvent.capacity > 0">Attend <i class="mdi mdi-star-face"></i></button>
+                  <button aria-label="Attend Event" @click="attend()" class="btn btn-warning" v-if="towerEvent.capacity > 0">Attend <i class="mdi mdi-human"></i></button>
                 </div>
               </div>
             </div>
