@@ -27,7 +27,7 @@
               <span v-if="towerEvent.capacity === 0" class="text-danger"><strong>SOLD OUT</strong></span>
             </div>
             <!-- TODO Figure out changing which button is displayed -->
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-2" v-if="user.isAuthenticated">
               <button aria-label="Unattend Event" @click="unattend()" class="btn btn-danger elevation-3" v-if="myTicket">Unattend</button>
               <div v-else>
                 <div v-if="!towerEvent.isCanceled">
@@ -72,6 +72,7 @@ export default {
       return {
         tickets: computed(() => AppState.tickets),
         account: computed(() => AppState.account),
+        user: computed(() => AppState.user),
         // activeEvent: computed(() => AppState.activeEvent),
         myTicket: computed(() => AppState.tickets.find(t => t.eventId === props.towerEvent.id && t.accountId === AppState.account.id)),
         async unattend() {

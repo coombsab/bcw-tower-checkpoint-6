@@ -6,11 +6,11 @@
 
     <p class="mx-10 text-info">What people are saying</p>
     <div class="comments-card bg-dark-lighten d-flex flex-column mx-10">
-      <div class="align-self-end pe-5 text-success">
+      <div class="align-self-end pe-5 text-success" v-if="user.isAuthenticated">
         <p>Join the conversation</p>
       </div>
-      <CreateComment />
-      <div class="comments-container px-5 scrollable">
+      <CreateComment v-if="user.isAuthenticated" />
+      <div class="comments-container px-5 scrollable" :class="!user.isAuthenticated ? 'mt-3' : ''">
         <CommentCard v-for="c of comments" :key="c.id" :comment="c" />
       </div>
     </div>
@@ -60,7 +60,8 @@ export default {
       })
         return {
           towerEvent: computed(() => AppState.activeEvent),
-          comments: computed(() => AppState.comments.sort().reverse())
+          comments: computed(() => AppState.comments.sort().reverse()),
+          user: computed(() => AppState.user)
         };
     },
     components: { EventDetails, CommentCard, CreateComment, AttendeeCard }
