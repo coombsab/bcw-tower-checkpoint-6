@@ -20,7 +20,7 @@
         </router-link>
       </li>
     </ul>
-    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addEventModal" aria-label="Add new event">New Event</button>
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addEventModal" aria-label="Add new event" v-if="user.isAuthenticated">New Event</button>
     <button class="btn btn-dark bg-dark-lighten" @click="logout" v-if="user.isAuthenticated" aria-label="Logout">logout</button>
   </span>
 
